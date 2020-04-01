@@ -69,19 +69,21 @@ dno=6;
 h12=v+dno+10;
 h13=20;
 
-//Ulozeni diody
 
-difference() {
-    cylinder(r=rud,h=stena+led+draty-2);               
-    cylinder(r=rd+0.25,h=20);
-    translate([0,0,stena+11])
-        cylinder(r=rd+0.5,h=20);
-    
-}
-difference() {
-    cylinder(r=rud,h=stena);
-    cylinder(r=1.5,h=20);
+module ulozeni_laseru(){
+    //Ulozeni diody
+
+    difference() {
+        cylinder(r=rud,h=stena+led+draty-2);               
+        cylinder(r=rd+0.25,h=20);
+        translate([0,0,stena+11])
+            cylinder(r=rd+0.5,h=20);
+        
     }
-    
+    difference() {
+        cylinder(r=rud,h=stena);
+        cylinder(r=1.5,h=20);
+        }
+    }       
 echo("r5",r5);
     
