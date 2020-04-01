@@ -12,7 +12,7 @@ module sroubek(delka = 10){
 
 
 color("red")
-translate([11, -0, 55.5])
+translate([12, -0, 55.5])
 rotate([0,-90, 0])
         sroubek(10);
 

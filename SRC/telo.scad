@@ -5,7 +5,7 @@ INCH=25.4;
 Vytah_prumer=INCH*1.25;    // prumer okularoveho vytahu
 Posun_pruzoru=Vytah_prumer/30;          // posun pruzoru pro odecitani ze stupnice
 Tloustka_sten=3.2;
-Delka_sroubu=16;
+Delka_sroubu=10;
 
 //Rozmery sroubu a matky pro M3 [mm]
 M3_screw_diameter = 3.2;                //prumer sroubu (zavit)
@@ -55,7 +55,7 @@ z1=h2-r2-Posun_pruzoru;     // vyska stredu otvoru pro odecitani ze stupnice
 // Vyska (kolimacni srouby)
 h7=r5+3;                    // poloha dna pro matku
 h8=r2+2;                      // delka pruzoru pro sroub
-h9=3;                       // vyska ulozeni pro hlavu sroubu
+h9=10;                       // vyska ulozeni pro hlavu sroubu
 
 // Kostka
 a1=(4*(z1))/(sqrt(2));      // delka hrany kostky (pruzor kolimatoru)
@@ -112,7 +112,7 @@ module telo_kolimatoru(){
                     rotate ([rot*360/srouby+60,-90,0]){
                         cylinder(r=r7,h=h7,$fn=6);      //matka 
                         cylinder(r=r8,h=h8);            //telo sroubu
-                        translate([0,0,r5+Delka_sroubu-10])
+                        translate([0,0,r5+Delka_sroubu-5])
                             cylinder(r=r9,h=h9);       //hlavy sroubu 
                     }
             
@@ -122,7 +122,7 @@ module telo_kolimatoru(){
                     rotate ([rot*360/srouby,-90,0]){
                         cylinder(r=r7,h=h7,$fn=6);      //matka
                         cylinder(r=r8,h=h8);            //telo sroubu
-                        translate([0,0,r5+Delka_sroubu-10])
+                        translate([0,0,r5+Delka_sroubu-5])
                             cylinder(r=r9,h=h9);       //hlavy sroubu
                     } 
             
@@ -131,7 +131,7 @@ module telo_kolimatoru(){
                 translate([0,0,v/2])
                     rotate ([rot*360/srouby,-90,0]){
                         cylinder(r=r8,h=h8+10);            //telo sroubu
-                        translate([0,0,r2-h9+0.8+1+0.1])
+                        translate([0,0,r2+0.8+1+0.1])
                             cylinder(r=r9,h=h9);       //hlavy sroubu
                     } 
             }
