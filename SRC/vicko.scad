@@ -66,10 +66,10 @@ dno=6;
 h12=v+dno+10;
 h13=15;
 
-module telo_kolimatoru(){
+module vicko_kolimatoru(){
     difference() {   
         cylinder(r=r11-0.3,h=v+dno-1);
-        #cube([13,8,50],center=true); 
+        cube([13,8,50],center=true); 
             
     //Srouby pro uchyceni vicka
         

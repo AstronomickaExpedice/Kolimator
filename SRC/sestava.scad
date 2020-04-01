@@ -25,7 +25,8 @@ rotate([0,90, 0])
 difference(){
     union(){
         telo_kolimatoru();
-        vicko_kolimatoru();
+        translate([0,0,-6])
+            vicko_kolimatoru();
     }
     
     
