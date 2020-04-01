@@ -1,5 +1,5 @@
 use <telo.scad>
-
+use <vicko.scad>
 
 module sroubek(delka = 10){
    
@@ -12,16 +12,23 @@ module sroubek(delka = 10){
 
 
 color("red")
-translate([12, -0, 55.5])
-rotate([0,-90, 0])
+translate([-12, 0, 39])
+rotate([0,90, 0])
         sroubek(10);
+
+color("red")
+translate([-19, 0, 5])
+rotate([0,90, 0])
+        sroubek(6);
+
 
 difference(){
     union(){
         telo_kolimatoru();
+        vicko_kolimatoru();
     }
     
     
-    
+    translate([-200,0,0])
     cube(200);
 }
