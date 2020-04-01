@@ -17,7 +17,7 @@ rotate([0,90, 0])
         sroubek(10);
 
 color("red")
-translate([-19, 0, 5])
+translate([-18, 0, 5])
 rotate([0,90, 0])
         sroubek(6);
 
@@ -25,11 +25,12 @@ rotate([0,90, 0])
 difference(){
     union(){
         telo_kolimatoru();
+        color("green")
         translate([0,0,-6])
             vicko_kolimatoru();
     }
     
     
-    translate([-200,0,0])
+    translate([-200,0,-10])
     cube(200);
 }

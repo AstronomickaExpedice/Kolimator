@@ -131,13 +131,13 @@ module telo_kolimatoru(){
                 translate([0,0,v/2])
                     rotate ([rot*360/srouby,-90,0]){
                         cylinder(r=r8,h=h8+10);            //telo sroubu
-                        translate([0,0,r2+0.8+1+0.1])
+                        translate([0,0,r2-1])
                             cylinder(r=r9,h=h9);       //hlavy sroubu
                     } 
             }
-
+        }
     translate([0,0,p6])
-                cylinder(r=r6,h=0.2);                // ulozeni baterie    
+                cylinder(r=r2,h=0.2);                // ulozeni baterie    
     }
     echo(r2-h7);
     
@@ -146,7 +146,7 @@ module telo_kolimatoru(){
     echo(16+r5-1);
     echo(r2-h9-0.1);
     echo(r5+Delka_sroubu-5);
-}
+
 
 
 
