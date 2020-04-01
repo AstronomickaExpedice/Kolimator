@@ -66,40 +66,41 @@ dno=6;
 h12=v+dno+10;
 h13=15;
 
-
-difference() {   
-    cylinder(r=r11-0.3,h=v+dno-1);
-    #cube([13,8,50],center=true); 
+module telo_kolimatoru(){
+    difference() {   
+        cylinder(r=r11-0.3,h=v+dno-1);
+        #cube([13,8,50],center=true); 
+            
+    //Srouby pro uchyceni vicka
         
-//Srouby pro uchyceni vicka
-    
-    for(rot=[1:srouby]) {            //dolni ulozeni sroubu
-        hull() {
-            translate([0,0,v/2+dno])
-                rotate ([rot*360/srouby,-90,0]) {
-                    translate([0,0,r2-6])
-                        cylinder(r=r7+0.5,h=2.5,$fn=6);      //matka 
-                }   
-                 
-            translate([0,0,v+dno])
-                rotate ([rot*360/srouby,-90,0]){
-                    translate([0,0,r2-6])
-                        cylinder(r=r7+0.5,h=2.5,$fn=6);      //matka 
-                }  
-                }     
-            }
-     for(rot=[1:srouby])     {            //dolni ulozeni sroubu
-            translate([0,0,v/2+dno])
-                rotate ([rot*360/srouby,-90,0]){  
-                    translate([0,0,r2-8])
-                        cylinder(r=r8,h=h8);            //telo sroubu
+        for(rot=[1:srouby]) {            //dolni ulozeni sroubu
+            hull() {
+                translate([0,0,v/2+dno])
+                    rotate ([rot*360/srouby,-90,0]) {
+                        translate([0,0,r2-6])
+                            cylinder(r=r7+0.5,h=2.5,$fn=6);      //matka 
+                    }   
+                     
+                translate([0,0,v+dno])
+                    rotate ([rot*360/srouby,-90,0]){
+                        translate([0,0,r2-6])
+                            cylinder(r=r7+0.5,h=2.5,$fn=6);      //matka 
+                    }  
+                    }     
                 }
+         for(rot=[1:srouby])     {            //dolni ulozeni sroubu
+                translate([0,0,v/2+dno])
+                    rotate ([rot*360/srouby,-90,0]){  
+                        translate([0,0,r2-8])
+                            cylinder(r=r8,h=h8);            //telo sroubu
+                    }
+                }
+     
             }
- 
-        }
-    
-difference() {
-    cylinder(r=r2,h=dno);   
-    cylinder(r=3.4,h=100);
-}
+        
+    difference() {
+        cylinder(r=r2,h=dno);   
+        cylinder(r=3.4,h=100);
+    }
 
+}
