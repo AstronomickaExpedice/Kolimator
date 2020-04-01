@@ -18,10 +18,11 @@ r1=Vytah_prumer/2;      // polomer okularoveho vytahu
 r2=r1+3;                // polomer kolimatoru
 r3=r1-3.2;    // polomer vzreyu v horni casti kolimatoru
 r4=3;                   // polomer pruzoru pro laser
-r5=5;                   // polomer dutiny na ulozeni pouzdra diody
+r5=7;                   // polomer dutiny na ulozeni pouzdra diody
 r6=10.5+1.5;            // polomer ulozeni baterie
 r10=r2-2-2;           //polomer volne plochy (baterie/vicko)
 r11=r2-2;             //polomer ulozeni vicka
+rud=r5-3;                //polomer ulozeni diody
 
 // Polomery (rovina x,y)
 r7=M3_nut_diameter/2;         // polomer matky
@@ -71,14 +72,14 @@ h13=20;
 //Ulozeni diody
 
 difference() {
-    cylinder(r=r5-1,h=stena+led+draty-2);               
+    cylinder(r=rud,h=stena+led+draty-2);               
     cylinder(r=rd+0.25,h=20);
     translate([0,0,stena+11])
         cylinder(r=rd+0.5,h=20);
     
 }
 difference() {
-    cylinder(r=r5-1,h=stena);
+    cylinder(r=rud,h=stena);
     cylinder(r=1.5,h=20);
     }
     

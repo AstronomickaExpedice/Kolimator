@@ -16,10 +16,10 @@ M3_screw_head_diameter = 6.6;           //prumer hlavy sroubu
 
 // Polomery (osa x,y)
 r1=Vytah_prumer/2;      // polomer okularoveho vytahu
-r2=r1+4;                // polomer kolimatoru
+r2=r1+3;                // polomer kolimatoru
 r3=r1-3.2;    // polomer vzreyu v horni casti kolimatoru
 r4=2;                   // polomer pruzoru pro laser
-r5=5;                   // polomer dutiny na ulozeni pouzdra diody
+r5=7;                   // polomer dutiny na ulozeni pouzdra diody
 r6=10.5+1.5;            // polomer ulozeni baterie
 r10=r2-2-2;           //polomer volne plochy (baterie/vicko)
 r11=r2-2;             //polomer ulozeni vicka
@@ -112,7 +112,7 @@ module telo_kolimatoru(){
                     rotate ([rot*360/srouby+60,-90,0]){
                         cylinder(r=r7,h=h7,$fn=6);      //matka 
                         cylinder(r=r8,h=h8);            //telo sroubu
-                        translate([0,0,r5+Delka_sroubu-2])
+                        translate([0,0,r5+Delka_sroubu-10])
                             cylinder(r=r9,h=h9);       //hlavy sroubu 
                     }
             
@@ -122,7 +122,7 @@ module telo_kolimatoru(){
                     rotate ([rot*360/srouby,-90,0]){
                         cylinder(r=r7,h=h7,$fn=6);      //matka
                         cylinder(r=r8,h=h8);            //telo sroubu
-                        translate([0,0,r5+Delka_sroubu-2])
+                        translate([0,0,r5+Delka_sroubu-10])
                             cylinder(r=r9,h=h9);       //hlavy sroubu
                     } 
             
@@ -140,11 +140,12 @@ module telo_kolimatoru(){
                 cylinder(r=r6,h=0.2);                // ulozeni baterie    
     }
     echo(r2-h7);
-    echo(r2-11/2);
+    
     echo("r2",r2);
     echo(r2-r5);
     echo(16+r5-1);
     echo(r2-h9-0.1);
+    echo(r5+Delka_sroubu-5);
 }
 
 

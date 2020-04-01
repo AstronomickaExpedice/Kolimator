@@ -12,9 +12,9 @@ module sroubek(delka = 10){
 
 
 color("red")
-translate([16+5, -0, 55.5])
+translate([11, -0, 55.5])
 rotate([0,-90, 0])
-        sroubek(16);
+        sroubek(10);
 
 difference(){
     union(){
