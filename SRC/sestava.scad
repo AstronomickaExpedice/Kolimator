@@ -19,7 +19,7 @@ translate([-12, 0, 39])
 rotate([0,90, 0])
         sroubek(10);
 
-color("red")
+color("Red")
 translate([-18, 0, 5])
 rotate([0,90, 0])
         sroubek(6);
@@ -29,16 +29,16 @@ difference(){
     union(){
         telo_kolimatoru();
         
-        color("green")
+        color("Green")
         translate([0,0,-6])
             vicko_kolimatoru();
         
-        color ("blue")
-        translate([0,0,32])
-        rotate([0,0,180])
+        color ("LightGreen")
+        translate([0,0,45])
+        rotate([0,180,0])
         ulozeni_laseru();
         
-        color("orange")
+        color("Orange")
         translate([0,0,30])
         rotate([0,180,0])
         misticka_kolimatoru();
