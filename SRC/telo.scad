@@ -68,78 +68,85 @@ dno=5;
 h12=v+dno+10;
 h13=20;
 
-//KOLIMATOR (telo)
-difference() {
-    union() {                               // zakladni obalka
-        cylinder(r=r1,h=h1);
-        cylinder(r=r2,h=h2);
-    }
-    union() {
-        difference() {                      // pruzory
-            union() {
-                cylinder(r=r3,h=h1+0.1);
-                translate([0,0,z1])
-                    rotate ([0,-90,0])
-                        union() {
-                            cylinder(r=r3,h=h1);
-                            translate([Posun_pruzoru,0,0])
-                                cylinder(r1=r3,r2=r2,h=r2*1.5);
-                        }
-            }
-            translate([z1,0,0])
-                rotate ([0,45,0])
-                    cube([a1,a1,a1],center=true);           
-            }
-        cylinder(r=r4,h=h1);                    // uzky pruzor laseru
-        translate([0,0,p5-0.1])
-            cylinder(r1=r5,r2=0,h=r5*3);        // kuzel v pruzoru
-        
-        cylinder(r=r5,h=p5);                // dutina na ulozeni pouzdra diody
-        
-        cylinder(r=r11,h=p6);                // ulozeni baterie
-            
- 
-        translate([0,0,-0.1])
-            cylinder(r=r11,h=h11);          // ulozeni vicka
-            
-        
-        
-        //Horni ulozeni sroubu    
-        for(rot=[1:srouby])                 
-            translate([0,0,p5-r7-3])
-                rotate ([rot*360/srouby+60,-90,0]){
-                    cylinder(r=r7,h=h7,$fn=6);      //matka 
-                    cylinder(r=r8,h=h8);            //telo sroubu
-                    translate([0,0,r5+Delka_sroubu-2])
-                        cylinder(r=r9,h=h9);       //hlavy sroubu 
-                }
-        
-        //Dolni ulozeni sroubu
-        for(rot=[1:srouby])                 
-            translate([0,0,p6+r7+5])
-                rotate ([rot*360/srouby,-90,0]){
-                    cylinder(r=r7,h=h7,$fn=6);      //matka
-                    cylinder(r=r8,h=h8);            //telo sroubu
-                    translate([0,0,r5+Delka_sroubu-2])
-                        cylinder(r=r9,h=h9);       //hlavy sroubu
-                } 
-        
-        //Srouby pro uchyceni vicka
-        for(rot=[1:srouby])                 //dolni ulozeni sroubu
-            translate([0,0,v/2])
-                rotate ([rot*360/srouby,-90,0]){
-                    cylinder(r=r8,h=h8+10);            //telo sroubu
-                    translate([0,0,r2-h9+0.8+1+0.1])
-                        cylinder(r=r9,h=h9);       //hlavy sroubu
-                } 
-        }
 
-translate([0,0,p6])
-            cylinder(r=r6,h=0.2);                // ulozeni baterie    
+module telo_kolimatoru(){
+    //KOLIMATOR (telo)
+    difference() {
+        union() {                               // zakladni obalka
+            cylinder(r=r1,h=h1);
+            cylinder(r=r2,h=h2);
+        }
+        union() {
+            difference() {                      // pruzory
+                union() {
+                    cylinder(r=r3,h=h1+0.1);
+                    translate([0,0,z1])
+                        rotate ([0,-90,0])
+                            union() {
+                                cylinder(r=r3,h=h1);
+                                translate([Posun_pruzoru,0,0])
+                                    cylinder(r1=r3,r2=r2,h=r2*1.5);
+                            }
+                }
+                translate([z1,0,0])
+                    rotate ([0,45,0])
+                        cube([a1,a1,a1],center=true);           
+                }
+            cylinder(r=r4,h=h1);                    // uzky pruzor laseru
+            translate([0,0,p5-0.1])
+                cylinder(r1=r5,r2=0,h=r5*3);        // kuzel v pruzoru
+            
+            cylinder(r=r5,h=p5);                // dutina na ulozeni pouzdra diody
+            
+            cylinder(r=r11,h=p6);                // ulozeni baterie
+                
+     
+            translate([0,0,-0.1])
+                cylinder(r=r11,h=h11);          // ulozeni vicka
+                
+            
+            
+            //Horni ulozeni sroubu    
+            for(rot=[1:srouby])                 
+                translate([0,0,p5-r7-3])
+                    rotate ([rot*360/srouby+60,-90,0]){
+                        cylinder(r=r7,h=h7,$fn=6);      //matka 
+                        cylinder(r=r8,h=h8);            //telo sroubu
+                        translate([0,0,r5+Delka_sroubu-2])
+                            cylinder(r=r9,h=h9);       //hlavy sroubu 
+                    }
+            
+            //Dolni ulozeni sroubu
+            for(rot=[1:srouby])                 
+                translate([0,0,p6+r7+5])
+                    rotate ([rot*360/srouby,-90,0]){
+                        cylinder(r=r7,h=h7,$fn=6);      //matka
+                        cylinder(r=r8,h=h8);            //telo sroubu
+                        translate([0,0,r5+Delka_sroubu-2])
+                            cylinder(r=r9,h=h9);       //hlavy sroubu
+                    } 
+            
+            //Srouby pro uchyceni vicka
+            for(rot=[1:srouby])                 //dolni ulozeni sroubu
+                translate([0,0,v/2])
+                    rotate ([rot*360/srouby,-90,0]){
+                        cylinder(r=r8,h=h8+10);            //telo sroubu
+                        translate([0,0,r2-h9+0.8+1+0.1])
+                            cylinder(r=r9,h=h9);       //hlavy sroubu
+                    } 
+            }
+
+    translate([0,0,p6])
+                cylinder(r=r6,h=0.2);                // ulozeni baterie    
+    }
+    echo(r2-h7);
+    echo(r2-11/2);
+    echo("r2",r2);
+    echo(r2-r5);
+    echo(16+r5-1);
+    echo(r2-h9-0.1);
 }
-echo(r2-h7);
-echo(r2-11/2);
-echo("r2",r2);
-echo(r2-r5);
-echo(16+r5-1);
-echo(r2-h9-0.1);
+
+
+
+telo_kolimatoru();
