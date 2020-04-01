@@ -31,94 +31,96 @@ holder_width = 10;       //sirka pruzinky
 holder_wall = 3;        //tloustka steny
 
 
-difference() {
-    translate([0,0.3,0]) {
-        union() {
-            union() {
-                difference(){
-                    translate([0,0,0])    
-                    cube([thickness+holder_wall*2+space*2, diameter+holder_wall+1, holder_width], center=true);
-                     
-                    translate([0, -holder_wall/2-7+3, 0])
-                        cube([thickness+space*3, diameter+10, holder_width+0.1], center=true);
-                    
-                    
-                    hull() {
-                        translate([thickness/2+space+holder_wall-0.3, -diameter/2 - space-4+3, 0])
-                            cube([0.6,1.2,1],center=true);
-                        translate([thickness/2+space+holder_wall-0.3, 6+3-1, 0])
-                            cube([0.6,1.2,1],center=true);  
-                    }
-                    hull() {
-                        translate([-thickness/2-space-holder_wall+0.3, -diameter/2 - space-4+3, 0])
-                            cube([0.6,1.2,1],center=true);
-                        translate([-thickness/2-space-holder_wall+0.3, 6+3-1, 0])
-                            cube([0.6,1.2,1],center=true);  
-                    }
-                    translate([0, 8.7, 0])
-                        rotate([0, 90, 0])
-                            cylinder(d=1.5, h=20, center = true, $fn=100);
-                        
-                    
-                    
-                }
-                
-
-                difference() {
-                    hull(){
-                        translate([thickness, -diameter/2 - space, 0])        
-                            cube([1, 1, holder_width],center=true);           
-                        translate([1, 5+3-1, 0])       
-                            cube([1, 1, holder_width],center=true);       
-                    }
-
-
-                    hull() {
-                        translate([thickness-0.3, -diameter/2 - space-1, 0])
-                            cube([0.4,1.2,1],center=true);
-                        translate([0.7, 5+3-1, 0])
-                            cube([0.4,1.2,1],center=true);     
-                    }        
-                }      
-
-                difference() {        
-                    hull(){
-                        translate([-thickness, -diameter/2 - space, 0])
-                            cube([1, 1, holder_width],center=true);
-                        translate([-1, 5+3-1, 0])
-                            cube([1, 1, holder_width],center=true);
-                    }
-
-
-                    hull() {
-                        translate([-thickness+0.3, -diameter/2 - space-1, 0])
-                            cube([0.4,1.2,1],center=true);
-                        translate([-0.7, 5+3-1, 0])
-                            cube([0.4,1.2,1],center=true);
-                            
-                    }        
-                }
-            }
-        
-            difference() {
-                translate([0,-diameter/2-1.5,0])
-                    cube([11,2,10],center=true);
-                #translate([0,-diameter/2-2,0])
-                    cube([15,4,1],center=true);
-                #translate([0,-diameter/2-2,0])
-                    rotate([0,90,0])
-                        cube([15,4,thickness],center=true);
-        }
-    }    
-}
-rotate([0,90,0])  {  
+module pruzinka(){
     difference() {
-    
-        cylinder(r=20,h=20,center=true);
-        cylinder(r=r11-1-2-1,h=20,center=true);
+        translate([0,0.3,0]) {
+            union() {
+                union() {
+                    difference(){
+                        translate([0,0,0])    
+                        cube([thickness+holder_wall*2+space*2, diameter+holder_wall+1, holder_width], center=true);
+                         
+                        translate([0, -holder_wall/2-7+3, 0])
+                            cube([thickness+space*3, diameter+10, holder_width+0.1], center=true);
+                        
+                        
+                        hull() {
+                            translate([thickness/2+space+holder_wall-0.3, -diameter/2 - space-4+3, 0])
+                                cube([0.6,1.2,1],center=true);
+                            translate([thickness/2+space+holder_wall-0.3, 6+3-1, 0])
+                                cube([0.6,1.2,1],center=true);  
+                        }
+                        hull() {
+                            translate([-thickness/2-space-holder_wall+0.3, -diameter/2 - space-4+3, 0])
+                                cube([0.6,1.2,1],center=true);
+                            translate([-thickness/2-space-holder_wall+0.3, 6+3-1, 0])
+                                cube([0.6,1.2,1],center=true);  
+                        }
+                        translate([0, 8.7, 0])
+                            rotate([0, 90, 0])
+                                cylinder(d=1.5, h=20, center = true, $fn=100);
+                            
+                        
+                        
+                    }
+                    
+
+                    difference() {
+                        hull(){
+                            translate([thickness, -diameter/2 - space, 0])        
+                                cube([1, 1, holder_width],center=true);           
+                            translate([1, 5+3-1, 0])       
+                                cube([1, 1, holder_width],center=true);       
+                        }
+
+
+                        hull() {
+                            translate([thickness-0.3, -diameter/2 - space-1, 0])
+                                cube([0.4,1.2,1],center=true);
+                            translate([0.7, 5+3-1, 0])
+                                cube([0.4,1.2,1],center=true);     
+                        }        
+                    }      
+
+                    difference() {        
+                        hull(){
+                            translate([-thickness, -diameter/2 - space, 0])
+                                cube([1, 1, holder_width],center=true);
+                            translate([-1, 5+3-1, 0])
+                                cube([1, 1, holder_width],center=true);
+                        }
+
+
+                        hull() {
+                            translate([-thickness+0.3, -diameter/2 - space-1, 0])
+                                cube([0.4,1.2,1],center=true);
+                            translate([-0.7, 5+3-1, 0])
+                                cube([0.4,1.2,1],center=true);
+                                
+                        }        
+                    }
+                }
+            
+                difference() {
+                    translate([0,-diameter/2-1.5,0])
+                        cube([11,2,10],center=true);
+                    #translate([0,-diameter/2-2,0])
+                        cube([15,4,1],center=true);
+                    #translate([0,-diameter/2-2,0])
+                        rotate([0,90,0])
+                            cube([15,4,thickness],center=true);
+            }
+        }    
     }
-}
- }       
+    rotate([0,90,0])  {  
+        difference() {
+        
+            cylinder(r=20,h=20,center=true);
+            cylinder(r=r11-1-2-1,h=20,center=true);
+        }
+    }
+     }
+ }     
 echo(space*2+diameter+thickness*2);
 
 

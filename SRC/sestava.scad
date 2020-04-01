@@ -1,6 +1,8 @@
 use <telo.scad>
 use <vicko.scad>
 use <ulozeni_laseru.scad>
+use <misticka.scad>
+use <pruzinka.scad>
 
 module sroubek(delka = 10){
    
@@ -32,8 +34,19 @@ difference(){
             vicko_kolimatoru();
         
         color ("blue")
-        translate([0,0,33])
+        translate([0,0,32])
+        rotate([0,0,180])
         ulozeni_laseru();
+        
+        color("orange")
+        translate([0,0,30])
+        rotate([0,180,0])
+        misticka_kolimatoru();
+        
+        color("LightBlue")
+        translate([0,0,23])
+        rotate([0,90,90])
+        pruzinka();
     }
     
     
