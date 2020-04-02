@@ -1,5 +1,6 @@
 // CSG.scad - Basic example of CSG usage
-$fn=100;
+$fn=200;
+$ff="Calibri:style=Bold";
 INCH=25.4;
 
 Vytah_prumer=INCH*1.25;    // prumer okularoveho vytahu
@@ -72,75 +73,106 @@ h13=20;
 module telo_kolimatoru(){
     //KOLIMATOR (telo)
     difference() {
-        union() {                               // zakladni obalka
-            cylinder(r=r1,h=h1);
-            cylinder(r=r2,h=h2);
-        }
         union() {
-            difference() {                      // pruzory
+            difference() {
+                color("black")
+                union() {                               // zakladni obalka
+                    cylinder(r=r1,h=h1);
+                    cylinder(r=r2,h=h2);
+                }
                 union() {
-                    cylinder(r=r3,h=h1+0.1);
-                    translate([0,0,z1])
-                        rotate ([0,-90,0])
-                            union() {
-                                cylinder(r=r3,h=h1);
-                                translate([Posun_pruzoru,0,0])
-                                    cylinder(r1=r3,r2=r2,h=r2*1.5);
+                    difference() {                      // pruzory
+                        union() {
+                            cylinder(r=r3,h=h1+0.1);
+                            translate([0,0,z1])
+                                rotate ([0,-90,0])
+                                    union() {
+                                        cylinder(r=r3,h=h1);
+                                        translate([Posun_pruzoru,0,0])
+                                            cylinder(r1=r3,r2=r2,h=r2*1.5);
+                                    }
+                        }
+                        translate([z1,0,0])
+                            rotate ([0,45,0])
+                                cube([a1,a1,a1],center=true);           
+                        }
+                    cylinder(r=r4,h=h1);                    // uzky pruzor laseru
+                    translate([0,0,p5-0.1])
+                        cylinder(r1=r5,r2=0,h=r5*3);        // kuzel v pruzoru
+                    
+                    cylinder(r=r5,h=p5);                // dutina na ulozeni pouzdra diody
+                    
+                    cylinder(r=r11,h=p6);                // ulozeni baterie
+                        
+             
+                    translate([0,0,-0.1])
+                        cylinder(r=r11,h=h11);          // ulozeni vicka
+                        
+                    
+                    
+                    //Horni ulozeni sroubu    
+                    for(rot=[1:srouby])                 
+                        translate([0,0,p5-r7-3])
+                            rotate ([rot*360/srouby+60,-90,0]){
+                                cylinder(r=r7,h=h7,$fn=6);      //matka 
+                                cylinder(r=r8,h=h8);            //telo sroubu
+                                translate([0,0,r5+Delka_sroubu-5])
+                                    cylinder(r=r9,h=h9);       //hlavy sroubu 
                             }
-                }
-                translate([z1,0,0])
-                    rotate ([0,45,0])
-                        cube([a1,a1,a1],center=true);           
-                }
-            cylinder(r=r4,h=h1);                    // uzky pruzor laseru
-            translate([0,0,p5-0.1])
-                cylinder(r1=r5,r2=0,h=r5*3);        // kuzel v pruzoru
-            
-            cylinder(r=r5,h=p5);                // dutina na ulozeni pouzdra diody
-            
-            cylinder(r=r11,h=p6);                // ulozeni baterie
-                
-     
-            translate([0,0,-0.1])
-                cylinder(r=r11,h=h11);          // ulozeni vicka
-                
-            
-            
-            //Horni ulozeni sroubu    
-            for(rot=[1:srouby])                 
-                translate([0,0,p5-r7-3])
-                    rotate ([rot*360/srouby+60,-90,0]){
-                        cylinder(r=r7,h=h7,$fn=6);      //matka 
-                        cylinder(r=r8,h=h8);            //telo sroubu
-                        translate([0,0,r5+Delka_sroubu-5])
-                            cylinder(r=r9,h=h9);       //hlavy sroubu 
+                    
+                    //Dolni ulozeni sroubu
+                    for(rot=[1:srouby])                 
+                        translate([0,0,p6+r7+5])
+                            rotate ([rot*360/srouby,-90,0]){
+                                cylinder(r=r7,h=h7,$fn=6);      //matka
+                                cylinder(r=r8,h=h8);            //telo sroubu
+                                translate([0,0,r5+Delka_sroubu-5])
+                                    cylinder(r=r9,h=h9);       //hlavy sroubu
+                            } 
+                    
+                    //Srouby pro uchyceni vicka
+                    for(rot=[1:srouby])                 //dolni ulozeni sroubu
+                        translate([0,0,v/2])
+                            rotate ([rot*360/srouby,-90,0]){
+                                cylinder(r=r8,h=h8+10);            //telo sroubu
+                                translate([0,0,r2-1])
+                                    cylinder(r=r9,h=h9);       //hlavy sroubu
+                            } 
                     }
-            
-            //Dolni ulozeni sroubu
-            for(rot=[1:srouby])                 
-                translate([0,0,p6+r7+5])
-                    rotate ([rot*360/srouby,-90,0]){
-                        cylinder(r=r7,h=h7,$fn=6);      //matka
-                        cylinder(r=r8,h=h8);            //telo sroubu
-                        translate([0,0,r5+Delka_sroubu-5])
-                            cylinder(r=r9,h=h9);       //hlavy sroubu
-                    } 
-            
-            //Srouby pro uchyceni vicka
-            for(rot=[1:srouby])                 //dolni ulozeni sroubu
-                translate([0,0,v/2])
-                    rotate ([rot*360/srouby,-90,0]){
-                        cylinder(r=r8,h=h8+10);            //telo sroubu
-                        translate([0,0,r2-1])
-                            cylinder(r=r9,h=h9);       //hlavy sroubu
-                    } 
+                }
+            translate([0,0,p6])
+                        cylinder(r=r2,h=0.2);                // ulozeni baterie 
             }
-        }
-    translate([0,0,p6])
-                cylinder(r=r2,h=0.2);                // ulozeni baterie    
+        
+        
+            R = 19;  // radius
+            H = 2;   // height
+            L = 130; // centering offset
+            step = 1;
+
+            $fn=360/step;
+            
+            rotate([90,0,0]) {
+                translate([0,0,0]) {
+                    #for (i=[180:step:540]) {
+                        radian = R*PI/180;
+                        rotate([0, i+90, 0]) { 
+                            translate([0,20,R-H/2]) {             // cylinder stuff
+                            intersection() {
+                                translate([L-i*radian, 0, 0]) {      // shift dxf over the window
+                                    linear_extrude(height = H, center = true, convexity = 4)
+                                        text("EXPA");
+                                    cube([radian*step, 100, H+1], center = true);  // window
+                            }
+                            }
+                            }
+                            }
+                            }
+                        }}
     }
+}
+
     echo(r2-h7);
-    
     echo("r2",r2);
     echo(r2-r5);
     echo(16+r5-1);
