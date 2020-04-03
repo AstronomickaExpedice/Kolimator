@@ -144,31 +144,27 @@ module telo_kolimatoru(){
                         cylinder(r=r2,h=0.2);                // ulozeni baterie 
             }
         
-        
-            R = 19;  // radius
-            H = 2;   // height
-            L = 130; // centering offset
-            step = 1;
+		R = 19;  // radius
+		H = 2;   // height
 
-            $fn=360/step;
-            
-            rotate([90,0,0]) {
-                translate([0,0,0]) {
-                    #for (i=[180:step:540]) {
-                        radian = R*PI/180;
-                        rotate([0, i+90, 0]) { 
-                            translate([0,20,R-H/2]) {             // cylinder stuff
-                            intersection() {
-                                translate([L-i*radian, 0, 0]) {      // shift dxf over the window
-                                    linear_extrude(height = H, center = true, convexity = 4)
-                                        text("EXPA");
-                                    cube([radian*step, 100, H+1], center = true);  // window
-                            }
-                            }
-                            }
-                            }
-                            }
-                        }}
+		step = 1;
+
+		$fn=360/step;
+		translate([0,0,10])
+		rotate([90,0,0])
+		
+		for (i=[0:step:360]) {	
+			radian = R*PI/180;
+  			rotate([0, i+90, 0])   translate([0,0,R]) 				// cylinder stuff
+  			intersection() {
+    				translate([-i*radian, 0, 0])  					// shift dxf over the window
+    				linear_extrude(height = H, center = true, convexity = 4)
+    				text("EXPA 2.0");
+    				cube([radian*step, 100, H+1], center = true);  // window
+  				}
+			}
+
+                       
     }
 }
 
