@@ -75,7 +75,6 @@ module telo_kolimatoru(){
     difference() {
         union() {
             difference() {
-                color("black")
                 union() {                               // zakladni obalka
                     cylinder(r=r1,h=h1);
                     cylinder(r=r2,h=h2);
@@ -144,27 +143,23 @@ module telo_kolimatoru(){
                         cylinder(r=r2,h=0.2);                // ulozeni baterie 
             }
         
-		R = 19;  // radius
-		H = 2;   // height
+		$fn=200;
+        $ff="Calibri:style=Bold";
 
-		step = 1;
-
-		$fn=360/step;
-		translate([0,0,10])
-		rotate([90,0,0])
-		
-		for (i=[0:step:360]) {	
-			radian = R*PI/180;
-  			rotate([0, i+90, 0])   translate([0,0,R]) 				// cylinder stuff
-  			intersection() {
-    				translate([-i*radian, 0, 0])  					// shift dxf over the window
-    				linear_extrude(height = H, center = true, convexity = 4)
-    				text("EXPA 2.0");
-    				cube([radian*step, 100, H+1], center = true);  // window
-  				}
-			}
-
-                       
+        
+        union() {
+           difference() {
+                s="EXPA";
+                    for(a=[0:4])
+                        rotate([0,0,90/3*a+46])
+                            translate([0,r2-2,15])
+                                rotate([90,0,180])
+                                    translate([-6,0,0])
+                                        linear_extrude(height=5) 
+                                            text(text=s[a], size=14, font=$ff);
+                cylinder(r=r2-0.8, h=h2);                      
+                        }
+                }
     }
 }
 
