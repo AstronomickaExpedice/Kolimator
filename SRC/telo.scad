@@ -56,7 +56,7 @@ z1=h2-r2-Posun_pruzoru;     // vyska stredu otvoru pro odecitani ze stupnice
 // Vyska (kolimacni srouby)
 h7=r5+3;                    // poloha dna pro matku
 h8=r2+2;                      // delka pruzoru pro sroub
-h9=10;                       // vyska ulozeni pro hlavu sroubu
+h9=r2;                       // vyska ulozeni pro hlavu sroubu
 
 // Kostka
 a1=(4*(z1))/(sqrt(2));      // delka hrany kostky (pruzor kolimatoru)
@@ -152,7 +152,7 @@ module telo_kolimatoru(){
                 s="EXPA";
                     for(a=[0:4])
                         rotate([0,0,90/3*a+46])
-                            translate([0,r2-2,15])
+                            translate([0,r2-2,p6/2])
                                 rotate([90,0,180])
                                     translate([-6,0,0])
                                         linear_extrude(height=5) 
