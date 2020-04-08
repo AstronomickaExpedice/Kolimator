@@ -141,6 +141,32 @@ module telo_kolimatoru(){
             translate([0,0,p6])
                         cylinder(r=r2,h=0.2);                // ulozeni baterie 
             
+        
+<<<<<<< HEAD:src/telo.scad
+		R = 19;  // radius
+		H = 2;   // height
+
+		step = 1;
+
+		$fn=360/step;
+		translate([0,0,10])
+		rotate([90,0,0])
+		
+        union(){
+		for (i=[0:step:360]) {	
+			radian = R*PI/180;
+  			rotate([0, i+90, 0])   translate([0,0,R]) 				// cylinder stuff
+  			intersection() {
+    				translate([-i*radian, 0, 0])  					// shift dxf over the window
+                        linear_extrude(height = H, center = true, convexity = 4)
+                            text("EXPA 2.0");
+    				cube([radian*step, 100, H+1], center = true);  // window
+  				}
+			}
+        }
+
+                       
+=======
 		$fn=200;
         $ff="Calibri:style=Bold";
 
@@ -158,6 +184,7 @@ module telo_kolimatoru(){
                 cylinder(r=r2-0.8, h=h2);                      
                         }
                 }
+>>>>>>> c770301659bff990f2e0e75e8629b770ab41dc53:SRC/telo.scad
     }
 }
 

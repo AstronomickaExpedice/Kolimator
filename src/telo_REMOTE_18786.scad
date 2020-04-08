@@ -72,6 +72,7 @@ h13=20;
 
 module telo_kolimatoru(){
     //KOLIMATOR (telo)
+    difference() {
         union() {
             difference() {
                 union() {                               // zakladni obalka
@@ -140,7 +141,8 @@ module telo_kolimatoru(){
                 }
             translate([0,0,p6])
                         cylinder(r=r2,h=0.2);                // ulozeni baterie 
-            
+            }
+        
 		$fn=200;
         $ff="Calibri:style=Bold";
 

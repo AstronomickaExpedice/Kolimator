@@ -56,7 +56,7 @@ z1=h2-r2-Posun_pruzoru;     // vyska stredu otvoru pro odecitani ze stupnice
 // Vyska (kolimacni srouby)
 h7=r5+3;                    // poloha dna pro matku
 h8=r2+2;                      // delka pruzoru pro sroub
-h9=r2;                       // vyska ulozeni pro hlavu sroubu
+h9=10;                       // vyska ulozeni pro hlavu sroubu
 
 // Kostka
 a1=(4*(z1))/(sqrt(2));      // delka hrany kostky (pruzor kolimatoru)
@@ -72,8 +72,10 @@ h13=20;
 
 module telo_kolimatoru(){
     //KOLIMATOR (telo)
+    difference() {
         union() {
             difference() {
+                color("black")
                 union() {                               // zakladni obalka
                     cylinder(r=r1,h=h1);
                     cylinder(r=r2,h=h2);
@@ -140,24 +142,29 @@ module telo_kolimatoru(){
                 }
             translate([0,0,p6])
                         cylinder(r=r2,h=0.2);                // ulozeni baterie 
-            
-		$fn=200;
-        $ff="Calibri:style=Bold";
-
+            }
         
-        union() {
-           difference() {
-                s="EXPA";
-                    for(a=[0:4])
-                        rotate([0,0,90/3*a+46])
-                            translate([0,r2-2,p6/2])
-                                rotate([90,0,180])
-                                    translate([-6,0,0])
-                                        linear_extrude(height=5) 
-                                            text(text=s[a], size=14, font=$ff);
-                cylinder(r=r2-0.8, h=h2);                      
-                        }
-                }
+		R = 19;  // radius
+		H = 2;   // height
+
+		step = 1;
+
+		$fn=360/step;
+		translate([0,0,10])
+		rotate([90,0,0])
+		
+		for (i=[0:step:360]) {	
+			radian = R*PI/180;
+  			rotate([0, i+90, 0])   translate([0,0,R]) 				// cylinder stuff
+  			intersection() {
+    				translate([-i*radian, 0, 0])  					// shift dxf over the window
+    				linear_extrude(height = H, center = true, convexity = 4)
+    				text("EXPA 2.0");
+    				cube([radian*step, 100, H+1], center = true);  // window
+  				}
+			}
+
+                       
     }
 }
 
