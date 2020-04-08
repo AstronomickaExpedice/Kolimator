@@ -72,7 +72,6 @@ h13=20;
 
 module telo_kolimatoru(){
     //KOLIMATOR (telo)
-    difference() {
         union() {
             difference() {
                 color("black")
@@ -142,7 +141,7 @@ module telo_kolimatoru(){
                 }
             translate([0,0,p6])
                         cylinder(r=r2,h=0.2);                // ulozeni baterie 
-            }
+            
         
 		R = 19;  // radius
 		H = 2;   // height
@@ -153,16 +152,18 @@ module telo_kolimatoru(){
 		translate([0,0,10])
 		rotate([90,0,0])
 		
+        union(){
 		for (i=[0:step:360]) {	
 			radian = R*PI/180;
   			rotate([0, i+90, 0])   translate([0,0,R]) 				// cylinder stuff
   			intersection() {
     				translate([-i*radian, 0, 0])  					// shift dxf over the window
-    				linear_extrude(height = H, center = true, convexity = 4)
-    				text("EXPA 2.0");
+                        linear_extrude(height = H, center = true, convexity = 4)
+                            text("EXPA 2.0");
     				cube([radian*step, 100, H+1], center = true);  // window
   				}
 			}
+        }
 
                        
     }
